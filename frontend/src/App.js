@@ -1,12 +1,19 @@
 import './App.css';
 import GenericButton from './components/button';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+import LandingPage from './pages/LandingPage';
 
 function App() {
   return (
-    <div className="App">
-      Hello World test
-      <GenericButton text={"Login with Spotify"} />
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path="/" element={<LandingPage />} />
+      </Routes>
+    </Router>
   );
 }
 
