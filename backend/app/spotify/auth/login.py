@@ -22,13 +22,6 @@ def login():
     auth_url = "{}/?{}".format(os.getenv("SPOTIFY_AUTH_URL"), url_args)
     return redirect(auth_url)
 
-
-@auth_bp.route('/test')
-def lol():
-    lol = os.getenv("API_VERSION")
-    breakpoint()
-    return "test"
-
 @auth_bp.route('/callback')
 def callback_f():
     code = request.args['code'] 
@@ -56,7 +49,7 @@ def callback_f():
     refresh_token = data["refresh_token"]
     scope = data["scope"]
     token_type = data["token_type"]
-    get_user_info_spotify(access_token)
+    user_data = get_user_info_spotify(access_token)
 
 
 
@@ -68,6 +61,6 @@ def get_user_info_spotify(access_token):
     response = requests.get(user_info_url, headers=header)
     data = json.loads(response.text) if response else ""
     breakpoint()
-    return '"hey gorgeous'
+    return data
 
 

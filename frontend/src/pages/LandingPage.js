@@ -1,3 +1,8 @@
+import React from "react"
+import Navbar from '../components/navbar';
+
 export default function LandingPage(){
-    return "Hello World Dynamic Rendering"
+    return (
+    <Navbar />
+    )
 }
