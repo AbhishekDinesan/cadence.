@@ -53,7 +53,7 @@ const ComposerPage = () => {
   const addMeasure = (index) => {
     setMeasures((prev) => [
       ...prev.slice(0, index + 1),
-      prev.length, // New measure with unique index
+      prev.length, 
       ...prev.slice(index + 1),
     ]);
   };
@@ -65,8 +65,8 @@ const ComposerPage = () => {
   };
 
   return (
-    <div style={{ position: "relative", width: "1000px", height: "300px" }}>
-      {/* SVG Container */}
+    <div style={{position: "relative", width: "1000px", height: "300px" }}>
+      <h1 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} > This is the name of your piece</h1>
       <div ref={containerRef} style={{ position: "relative", zIndex: 1 }} />
       {measurePositions.map((x, i) => (
         <div
