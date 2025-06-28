@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Factory } from "vexflow";
+import { ColorModeProvider } from "../components/ui/color-mode"
+import { Theme } from "@chakra-ui/react"
+import { Box } from "@chakra-ui/react";
 
 const ComposerPage = () => {
   const containerRef = useRef(null);
@@ -13,11 +16,9 @@ const ComposerPage = () => {
     if (containerRef.current) {
       try {
         containerRef.current.innerHTML = "";
-
         const factory = new Factory({
           renderer: { elementId: containerRef.current, width: window.innerWidth, height: window.innerHeight }
         });
-
         const score = factory.EasyScore();
         let x = 10, y = 40;
         const measureWidth = window.innerWidth / 4;
@@ -65,6 +66,9 @@ const ComposerPage = () => {
   };
 
   return (
+      <Box bg="white" minH="100vh">
+    <ColorModeProvider forcedTheme="light">
+    <Theme appearance="light">
     <div style={{position: "relative", width: "1000px", height: "300px" }}>
       <h1 style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}} > This is the name of your piece</h1>
       <div ref={containerRef} style={{ position: "relative", zIndex: 1 }} />
@@ -87,7 +91,7 @@ const ComposerPage = () => {
             padding: "5px",
             opacity: 0,
             transition: "opacity 0.2s",
-            zIndex: 10, // Make sure it's above the SVG
+            zIndex: 100, // Make sure it's above the SVG
           }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = "1")}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = "0")}
@@ -106,7 +110,6 @@ const ComposerPage = () => {
           </button>
         </div>
       ))}
-
       <input
         type="text"
         value={inputNotes}
@@ -116,6 +119,9 @@ const ComposerPage = () => {
       <button onClick={() => setRenderedNotes(inputNotes)}>Submit</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
+    </Theme>
+      </ColorModeProvider>
+      </Box>
   );
 };
 
